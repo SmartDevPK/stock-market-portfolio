@@ -23,6 +23,18 @@ mongoose.connect(process.env.MONGO_URI,{
 	useUnifiedTopology: true,
 })
 
+// Create UserSchame Table 
+const stockSchema = new mongoose.Schema({
+    company: String,
+	description: String,
+	initial_price: Number,
+	price_2002: Number,
+	price_2007: Number,
+	symbol: String,
+})
+
+const stock = mongoose.model("stock", stockSchema);
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost: ${PORT}`)
