@@ -35,6 +35,16 @@ const stockSchema = new mongoose.Schema({
 
 const stock = mongoose.model("stock", stockSchema);
 
+app.get('/api/stocks', async (req, res) => {
+    try {
+       const stocks = await stock.find();
+       res.json(stocks) 
+    } catch(error) {
+       console.error(error) 
+       res.status(500).json({error: "Internal Server Error"});
+    }
+})
+
 // Start Server
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost: ${PORT}`)
